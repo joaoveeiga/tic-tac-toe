@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
-import Slot  from './Slot'
+import { useTicTacToe } from '../hooks'
+import Slot from './Slot'
 
 const { width } = Dimensions.get('window')
 
 const TicTacToeComponent = () => {
+	const [{ isGameOver }] = useTicTacToe()
 	return (
 		<View style={styles.container}>
 			<Text>
@@ -13,21 +15,24 @@ const TicTacToeComponent = () => {
 			<Text>
 				Player O:
 			</Text>
+			<Text>
+				Draw:
+			</Text>
 			<View style={styles.ticTacToe}>
 				<View style={styles.columnContainer}>
-					<Slot />
-					<Slot />
-					<Slot />
+					<Slot i={1} j={1} />
+					<Slot i={2} j={1} />
+					<Slot i={3} j={1} />
 				</View>
 				<View style={styles.columnContainer}>
-					<Slot />
-					<Slot />
-					<Slot />
+					<Slot i={1} j={2} />
+					<Slot i={2} j={2} />
+					<Slot i={3} j={2} />
 				</View>
 				<View style={styles.columnContainer}>
-					<Slot />
-					<Slot />
-					<Slot />
+					<Slot i={1} j={3} />
+					<Slot i={2} j={3} />
+					<Slot i={3} j={3} />
 				</View>
 			</View>
 		</View>

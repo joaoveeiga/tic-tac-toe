@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
-import useTicTacToe from '../hooks/useTicTacToe'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useTicTacToe } from '../hooks'
+import { Move } from '../providers'
 
+type SlotProps = Move
 
-const Slot = () => {
-	const [{player},{setPlayer}] = useTicTacToe()
+const Slot = (props: SlotProps) => {
+	const [{ turn }, { setPlayerX, setPlayerO, setPlayersTurn }] = useTicTacToe()
 	const [wasPress, setWasPress] = useState('')
 	const onPress = () => {
-		setWasPress(player)
-		if (player === 'X')
-			return setPlayer('O')
-		return setPlayer('X')
+		if (turn === 'X')
+			setPlayerX((prevState) => {
+				return { ...prevState, moves: [...prevState.moves, props] }
+			})
+		if (turn === 'O')
+			setPlayerO((prevState) => {
+				return { ...prevState, moves: [...prevState.moves, props] }
+			})
+		setWasPress(turn)
+		setPlayersTurn(turn)
 	}
+
 	return (
 		<>
 			{wasPress ?
