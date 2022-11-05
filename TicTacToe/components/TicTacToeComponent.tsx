@@ -3,13 +3,8 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import Slot  from './Slot'
 
 const { height, width } = Dimensions.get('window')
-export type Player = 'X' | 'O'
 
-type TicTacToeProps = {
-	player: Player
-	setPlayer: React.Dispatch<React.SetStateAction<Player>>
-}
-const TicTacToeComponent = ({player, setPlayer}: TicTacToeProps) => {
+const TicTacToeComponent = () => {
 	return (
 		<View style={styles.container}>
 			<Text>
@@ -20,19 +15,19 @@ const TicTacToeComponent = ({player, setPlayer}: TicTacToeProps) => {
 			</Text>
 			<View style={styles.ticTacToe}>
 				<View style={styles.columnContainer}>
-					<Slot player={player} setPlayer={setPlayer} />
-					<Slot player={player} setPlayer={setPlayer} />
-					<Slot player={player} setPlayer={setPlayer} />
+					<Slot />
+					<Slot />
+					<Slot />
 				</View>
 				<View style={styles.columnContainer}>
-					<Slot player={player} setPlayer={setPlayer} />
-					<Slot player={player} setPlayer={setPlayer} />
-					<Slot player={player} setPlayer={setPlayer} />
+					<Slot />
+					<Slot />
+					<Slot />
 				</View>
 				<View style={styles.columnContainer}>
-					<Slot player={player} setPlayer={setPlayer} />
-					<Slot player={player} setPlayer={setPlayer} />
-					<Slot player={player} setPlayer={setPlayer} />
+					<Slot />
+					<Slot />
+					<Slot />
 				</View>
 			</View>
 		</View>

@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
+import useTicTacToe from '../hooks/useTicTacToe'
 
-type Player = 'X' | 'O'
 
-type SlotProps = {
-	player: Player
-	setPlayer: React.Dispatch<React.SetStateAction<Player>>
-}
-
-const Slot = ({ player, setPlayer }: SlotProps) => {
+const Slot = () => {
+	const [{player},{setPlayer}] = useTicTacToe()
 	const [wasPress, setWasPress] = useState('')
 	const onPress = () => {
 		setWasPress(player)
@@ -23,8 +19,7 @@ const Slot = ({ player, setPlayer }: SlotProps) => {
 					<Text style={styles.icon}>{wasPress}</Text>
 				</View>
 				:
-				<TouchableOpacity style={styles.container} onPress={onPress}>
-				</TouchableOpacity>}
+				<TouchableOpacity style={styles.container} onPress={onPress} />}
 		</>
 	)
 }

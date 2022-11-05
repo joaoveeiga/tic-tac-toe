@@ -1,22 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
   Text,
 } from 'react-native';
-import { Player, TicTacToe } from './components'
+import { TicTacToe } from './components'
+import { TicTacToeProvider } from './providers';
 
 
 const App = () => {
-  const [player, setPlayer] = useState<Player>('X')
-
   return (
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Tic Tac Toe</Text>
+    <TicTacToeProvider>
+      <View style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Tic Tac Toe</Text>
+        </View>
+        <TicTacToe />
       </View>
-      <TicTacToe player={player} setPlayer={setPlayer} />
-    </View>
+    </TicTacToeProvider>
   );
 };
 

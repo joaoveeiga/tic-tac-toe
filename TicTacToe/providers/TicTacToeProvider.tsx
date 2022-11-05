@@ -1,50 +1,34 @@
-import React, { useState, ReactNode, createContext } from 'react'
+import React, { useState, ReactNode, createContext, Dispatch, SetStateAction } from 'react'
 
 type TicTacToeProviderProps = {
 	children: ReactNode
 }
-
-type Player = 'X' | 'O'
+export type Player = 'X' | 'O'
 type Move = {
-	x: number, 
+	x: number,
 	y: number
 }
 
 type TicTacToeState = {
 	turn: Player
 	isGameOver: boolean
-	playerXWins: number
-	playerOWins: number
-	playerXMoves: Move[]
-	playerYMoves: Move[]
+	player: Player
 }
 
-type TicTacToeActions = {
+type TicTacToeAction = {
 	setPlayersTurn: (player: Player) => void
-	setIsGameOver: () => void
-	setPlayerXWins: (wins: number) => void
-	setPlayerOWins: (wins: number) => void
+	setIsGameOver: Dispatch<SetStateAction<boolean>>
+	setPlayer: Dispatch<SetStateAction<Player>>
 }
 
-type TicTacToeProviderData = [
-	state: TicTacToeState,
-	actions: TicTacToeActions
-]
+type TicTacToeProviderData = [state: TicTacToeState, action: TicTacToeAction]
 
 const TicTacToeContext = createContext<TicTacToeProviderData>(null)
 
-const TicTacToeProvider = ({children}: TicTacToeProviderProps) => {
+const TicTacToeProvider = ({ children }: TicTacToeProviderProps) => {
 	const [turn, setTurn] = useState<Player>('X')
 	const [isGameOver, setIsGameOver] = useState(false)
-	const [playerXMoves, setPlayerXMoves] = useState<Move[]>([])
-	const [counter, setCounter] = useState()
-	const checkMoves = (move: Move) => {
-		 	
-	}
-	
-	React.useEffect(()=>{
-		
-	},[])
+	const [player, setPlayer] = useState<Player>('X')
 
 	const setPlayersTurn = (turn: Player) => {
 		if (turn === 'O')
@@ -58,15 +42,19 @@ const TicTacToeProvider = ({children}: TicTacToeProviderProps) => {
 			value={[
 				{
 					turn,
-					isGameOver
+					isGameOver,
+					player
 				},
 				{
 					setPlayersTurn,
-					setIsGameOver
+					setIsGameOver,
+					setPlayer,
 				}
 			]}
-			/>
+		/>
 	)
 }
+
+TicTacToeProvider.Context = TicTacToeContext
 
 export default TicTacToeProvider
