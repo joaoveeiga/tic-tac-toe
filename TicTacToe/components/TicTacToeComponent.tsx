@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import Slot  from './Slot'
 
-const { height, width } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 const TicTacToeComponent = () => {
 	return (
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	ticTacToe: {
-		// borderWidth: 1,
-		// borderColor: 'white',
+		borderWidth: 0.5,
+		borderColor: 'white',
 		height: 0.9 * width,
 		width: 0.9 * width,
 		flexDirection: 'row',
